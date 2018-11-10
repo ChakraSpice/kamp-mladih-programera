@@ -9,7 +9,7 @@ let cats = [];
 // Express middleware
 app.use(bodyparser.json());
 
-const rootGet = (request, response) => response.send("OVO i dsadadalje RADI");
+const rootGet = (request, response) => response.send("OVO i dssadasdadada[sdkpoasdkopasalje RADI");
 
 app.get("/", rootGet);
 
@@ -37,6 +37,32 @@ app.post("/cats", (req, res) => {
 
 app.get("/cats/nase", (req, res) => {
     res.send({ cats });
+});
+
+const todos = [
+    {
+        text: "Nahrani macku",
+        completed: false,
+        owner: "Lazar"
+    }
+];
+
+app.get('/todos', (req, res) => {
+    res.send({ todos });
+})
+
+app.post('/todos', (request, response) => {
+    const text = request.body.text;
+    const completed = request.body.completed;
+    const owner = request.body.owner;
+
+    todos.push({
+        text,
+        completed,
+        owner
+    });
+
+    response.sendStatus(200);
 });
 
 const port = 3000;
